@@ -2,21 +2,41 @@
 
 Stand 09.10.2026. Platzhalter, bis die vollständige Website aus `Persoenliche-Website-Opris/` fertig ist.
 
-## Hochladen (IONOS)
+## Hosting: GitHub Pages
 
-Domain `dr-opris.de` liegt bei IONOS (registriert 04.08.2026, zeigt derzeit die IONOS-Standardseite).
+- Repository: https://github.com/horiaop/dr-opris.de (Branch `main`, Wurzelverzeichnis). Dieser Ordner ist das lokale Git-Repository.
+- GitHub Pages ist aktiv, Custom Domain `dr-opris.de` (Datei `CNAME`). Nach jedem `git push` baut GitHub die Seite in etwa einer Minute neu.
+- Domain und DNS liegen bei IONOS (Vertrag „IONOS Domain (Zusatz-Domain)“, kein IONOS-Webspace). Die MX-/TXT-Records für Google Workspace nicht anfassen.
+- HTTPS: Sobald die DNS-Records stimmen, stellt GitHub automatisch ein Let's-Encrypt-Zertifikat aus. Danach im Repository unter Settings → Pages „Enforce HTTPS“ einschalten (oder `gh api -X PUT repos/horiaop/dr-opris.de/pages -F https_enforced=true`).
 
-1. IONOS-Kundencenter → **Hosting** → **SFTP & SSH**: Zugangsdaten (Server `access…webspace-host.com` oder `home…1and1-data.host`, Benutzer `u…`, Passwort) anzeigen bzw. setzen.
-2. Mit Cyberduck, FileZilla oder `sftp` verbinden und **alle Dateien dieses Ordners außer LIESMICH.md** in das Verzeichnis laden, auf das die Domain zeigt (Standard: Hauptverzeichnis `/`; prüfen unter **Domains & SSL** → dr-opris.de → **Ziel/Verwendung**). Die versteckte `.htaccess` nicht vergessen.
-3. **Domains & SSL** → dr-opris.de → SSL-Zertifikat aktivieren (IONOS-Standard, kostenlos), sonst schlägt die HTTPS-Umleitung fehl.
-4. Prüfen: https://dr-opris.de, http://www.dr-opris.de (muss auf https://dr-opris.de umleiten).
+### DNS-Records bei IONOS (Domains & SSL → dr-opris.de → DNS)
 
-Alternativ ohne SFTP: **Hosting** → **Webspace** → Dateimanager (WebspaceExplorer) im Browser, dort die Dateien hochladen.
+| Typ | Hostname | Wert |
+|---|---|---|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| AAAA | @ | 2606:50c0:8000::153 |
+| AAAA | @ | 2606:50c0:8001::153 |
+| AAAA | @ | 2606:50c0:8002::153 |
+| AAAA | @ | 2606:50c0:8003::153 |
+| CNAME | www | horiaop.github.io |
+
+Die IONOS-Standardrecords A `217.160.0.144` und AAAA `2001:8d8:100f:f000::200` („Default Site“) ersetzen oder deaktivieren. Prüfen mit `dig +short dr-opris.de` (muss die vier 185.199.x.153 liefern).
+
+## Aktualisieren
+
+Dateien ändern, dann im Ordner:
+
+```
+git add -A && git commit -m "Beschreibung" && git push
+```
 
 ## Inhalt
 
-Eine Seite, alles inline (CSS im HTML, Schriften in `fonts/`). Impressum und Datenschutz als aufklappbare Abschnitte, Hoster IONOS SE ist eingetragen. Keine Cookies, keine Skripte.
+Eine Seite, alles inline (CSS im HTML, Schriften in `fonts/`). `404.html` ist eine Kopie der Startseite. Impressum und Datenschutz als aufklappbare Abschnitte; als Hoster ist GitHub, Inc. eingetragen.
 
 ## Livegang der vollständigen Website
 
-Ordner `Persoenliche-Website-Opris/` komplett hochladen (überschreibt `index.html`, `.htaccess`, `robots.txt`, `favicon.svg`, `fonts/`). Anschließend die Sitemap `https://dr-opris.de/sitemap.xml` in der Google Search Console und bei Bing Webmaster Tools anmelden.
+Inhalt von `Persoenliche-Website-Opris/` (ohne `docs/`, `assets/`, `LIESMICH.md`, `.htaccess`) in dieses Repository kopieren, `CNAME` behalten, committen und pushen. Anschließend die Sitemap `https://dr-opris.de/sitemap.xml` in der Google Search Console und bei Bing Webmaster Tools anmelden.
