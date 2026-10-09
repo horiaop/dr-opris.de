@@ -4,7 +4,7 @@
 
 ## Seiten
 
-- [Startseite](https://dr-opris.de/): Kurzvorstellung, Kontakt per E-Mail, Terminbuchung für Dr. Horia Opris über Doctolib (derzeit AllDent Zahnzentrum Essen), Impressum und Datenschutz
+- [Startseite](https://dr-opris.de/): Kurzvorstellung, Kontakt per E-Mail (horia (at) dr-opris.de), Terminbuchung für Dr. Horia Opris über Doctolib (derzeit AllDent Zahnzentrum Essen), Impressum und Datenschutz
 
 ## Externe Profile
 
