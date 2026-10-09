@@ -74,7 +74,7 @@ p { margin: 0 0 1em; max-width: 60ch; }
 .fuss a:hover { color: var(--akzent-dunkel); text-decoration: underline; }
 
 .recht { border-top: 1px solid var(--rand-leicht); }
-.recht details { padding: .9rem 0; border-bottom: 1px solid var(--rand-leicht); }
+.recht details { scroll-margin-top: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--rand-leicht); }
 .recht summary { cursor: pointer; font-family: 'Figtree', sans-serif; font-weight: 600; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
 .recht summary::-webkit-details-marker { display: none; }
 .recht summary::after { content: "+"; color: var(--akzent); font-size: 1.3rem; line-height: 1; }
@@ -176,5 +176,19 @@ p { margin: 0 0 1em; max-width: 60ch; }
     </nav>
   </div>
 </footer>
+<script>
+(function(){
+  function openTarget(){
+    var id=location.hash.slice(1); if(!id) return;
+    var d=document.getElementById(id);
+    if(d && d.tagName==='DETAILS'){ d.open=true; d.scrollIntoView({behavior:'smooth',block:'start'}); }
+  }
+  window.addEventListener('hashchange',openTarget);
+  document.querySelectorAll('.fuss a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(){ setTimeout(openTarget,0); });
+  });
+  openTarget();
+})();
+</script>
 </body>
 </html>
