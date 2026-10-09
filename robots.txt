@@ -1,2 +1,6 @@
+# dr-opris.de · Vorab-Seite
 User-agent: *
 Allow: /
+Content-Signal: search=yes, ai-input=yes
+
+Sitemap: https://dr-opris.de/sitemap.xml
