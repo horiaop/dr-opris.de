@@ -1,0 +1,19 @@
+name: Erreichbarkeit dr-opris.de
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # alle 30 Minuten
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Seite abrufen und prüfen
+        run: |
+          set -e
+          code=$(curl -sS -o body.html -w '%{http_code}' --max-time 20 https://dr-opris.de/)
+          echo "HTTP $code"
+          test "$code" = "200"
+          grep -q "Horia Opris" body.html
+          echo "OK: Seite antwortet mit 200 und enthält den erwarteten Inhalt."
