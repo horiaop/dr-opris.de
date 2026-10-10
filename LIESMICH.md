@@ -35,7 +35,7 @@ git add -A && git commit -m "Beschreibung" && git push
 
 ## Inhalt
 
-Eine Seite, alles inline (CSS im HTML, Schriften in `fonts/`). `404.html` ist eine Kopie der Startseite. Impressum und Datenschutz als aufklappbare Abschnitte; als Hoster ist GitHub, Inc. eingetragen.
+Eine Seite, alles inline (CSS im HTML, Schriften in `fonts/`). `404.html` ist eine Kopie der Startseite. Impressum und Datenschutz als aufklappbare Abschnitte; als Hoster ist GitHub, Inc. eingetragen. Besucherstatistik: GoatCounter (cookielos, EU), Dashboard https://dropris.goatcounter.com, Login horia.opris@gmail.com; Skript im `<head>`, Datenschutz-Abschnitt „Reichweitenmessung“ vorhanden.
 
 ## Livegang der vollständigen Website
 
